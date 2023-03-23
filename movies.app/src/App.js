@@ -1,7 +1,9 @@
 import React from 'react';
 
-function App() {
-    return <div>Movies</div>;
-}
+import { SearchBar } from './components/searchBar';
+
+const App = () => {
+    return <SearchBar />;
+};
 
 export default App;

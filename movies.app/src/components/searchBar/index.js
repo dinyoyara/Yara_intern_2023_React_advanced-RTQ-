@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { setQuery } from '../../store';
 
-export const SearchBar = () => {
-    const { inputValue, setInputValue } = useState();
+const SearchBar = () => {
+    const [inputValue, setInputValue] = useState();
     const dispatch = useDispatch();
 
     const handleInputChange = (e) => {
@@ -25,3 +25,5 @@ export const SearchBar = () => {
         </form>
     );
 };
+
+export default SearchBar;

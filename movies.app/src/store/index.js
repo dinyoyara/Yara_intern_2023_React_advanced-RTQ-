@@ -1,19 +1,24 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 
-import { moviesApi } from './apis/moviesApi';
+import { searchResultApi } from './apis/searchResultApi';
 import { favoritesReducer } from './slices/favoritesSlice';
 import { watchlistReducer } from './slices/watchlistSlice';
+import { searchReducer, setQuery } from './slices/searchSlice';
 
 export const store = configureStore({
     reducer: {
-        movies: moviesApi.reducer,
+        [searchResultApi.reducerPath]: searchResultApi.reducer,
         favorites: favoritesReducer,
-        watchlist: watchlistReducer
+        watchlist: watchlistReducer,
+        searchQuery: searchReducer
     },
     middleware: (getDefaultMiddleware) => {
-        return getDefaultMiddleware().concat(moviesApi.middleware);
+        return getDefaultMiddleware().concat(searchResultApi.middleware);
     }
 });
 
 setupListeners(store.dispatch);
+
+export { setQuery };
+export const { useFetchMoviesQuery } = searchResultApi;

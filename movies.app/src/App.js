@@ -1,9 +1,21 @@
 import React from 'react';
 
-import { SearchBar } from './components/searchBar';
+import { useSelector } from 'react-redux';
+
+import SearchBar from './components/searchBar';
+import ResultFilms from './components/resultFilms';
 
 const App = () => {
-    return <SearchBar />;
+    const searchQuery = useSelector((state) => {
+        return state.searchQuery;
+    });
+
+    return (
+        <>
+            <SearchBar />
+            {searchQuery ? <ResultFilms searchQuery={searchQuery} /> : null}
+        </>
+    );
 };
 
 export default App;

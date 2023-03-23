@@ -5,15 +5,19 @@ const apiKey = process.env.API_KEY;
 const searchResultApi = createApi({
     reducerPath: 'searchResults',
     baseQuery: fetchBaseQuery({
-        baseUrl: `http://www.omdbapi.com/?apikey=${apiKey}&t=`
+        baseUrl: `http://www.omdbapi.com`
     }),
     endpoints: (builder) => {
         return {
             fetchMovies: builder.query({
                 query: (searchQuery) => {
                     return {
-                        url: `${searchQuery}`,
-                        method: 'GET'
+                        url: '/',
+                        method: 'GET',
+                        params: {
+                            t: searchQuery,
+                            apikey: `${apiKey}`
+                        }
                     };
                 }
             })

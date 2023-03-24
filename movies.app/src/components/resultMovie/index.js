@@ -1,12 +1,19 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { useFetchMoviesQuery } from '../../store';
+import { useFetchMoviesQuery, addToFavorites } from '../../store';
+import Movie from '../movie';
 
-const ResultFilms = ({ searchQuery }) => {
+const ResultMovie = () => {
+    const searchQuery = useSelector((state) => {
+        return state.searchQuery;
+    });
     const { data, error, isFetching } = useFetchMoviesQuery(searchQuery);
+    const dispatch = useDispatch();
 
     const handleAddToFav = (imdbID, Title, Year, Poster) => {
         console.log({ imdbID, Title, Year, Poster });
+        dispatch(addToFavorites({ imdbID, Title, Year, Poster }));
     };
 
     const handleAddToWatch = (imdbID, Title, Year, Poster) => {
@@ -22,12 +29,9 @@ const ResultFilms = ({ searchQuery }) => {
         console.log(data);
         const { Title, Year, imdbID, Poster } = data;
         content = (
-            <div style={{ marginLeft: '20px' }}>
-                <div style={{ marginBottom: '10px', width: '300px', textAlign: 'center' }}>
-                    {Title} - {Year}
-                </div>
-                <img src={Poster} alt={Title} style={{ marginBottom: '10px' }} />
-                <div style={{ width: '300px', display: 'flex', justifyContent: 'space-between' }}>
+            <>
+                <Movie title={Title} year={Year} poster={Poster} width='300' />
+                <div style={{ width: '300px', marginLeft: '20px', display: 'flex', justifyContent: 'space-between' }}>
                     <button
                         type='button'
                         onClick={() => handleAddToFav(imdbID, Title, Year, Poster)}
@@ -43,11 +47,11 @@ const ResultFilms = ({ searchQuery }) => {
                         watchlist
                     </button>
                 </div>
-            </div>
+            </>
         );
     }
 
     return <div>{content}</div>;
 };
 
-export default ResultFilms;
+export default ResultMovie;

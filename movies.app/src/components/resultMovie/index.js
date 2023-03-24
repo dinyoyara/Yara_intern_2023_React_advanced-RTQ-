@@ -47,16 +47,16 @@ const ResultMovie = () => {
                     <button
                         type='button'
                         onClick={() => handleAddToFav(imdbID, Title, Year, Poster)}
-                        style={{ width: '100px' }}
+                        style={{ width: '120px' }}
                     >
-                        favorites
+                        Add to Favorites
                     </button>
                     <button
                         type='button'
                         onClick={() => handleAddToWatch(imdbID, Title, Year, Poster)}
-                        style={{ width: '100px' }}
+                        style={{ width: '120px' }}
                     >
-                        watchlist
+                        Add to Watchlist
                     </button>
                 </div>
             </>

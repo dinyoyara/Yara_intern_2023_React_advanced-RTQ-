@@ -9,9 +9,9 @@ import { searchReducer, setQuery } from './slices/searchSlice';
 export const store = configureStore({
     reducer: {
         [searchResultApi.reducerPath]: searchResultApi.reducer,
+        searchQuery: searchReducer,
         favorites: favoritesReducer,
-        watchlist: watchlistReducer,
-        searchQuery: searchReducer
+        watchlist: watchlistReducer
     },
     middleware: (getDefaultMiddleware) => {
         return getDefaultMiddleware().concat(searchResultApi.middleware);

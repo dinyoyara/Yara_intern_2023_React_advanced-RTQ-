@@ -1,12 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const FavoritesSlice = createSlice({
+const favoritesSlice = createSlice({
     name: 'favorites',
-    initialState: {
-        isLoading: false,
-        error: null,
-        data: []
+    initialState: [],
+    reducers: {
+        addMovie(state, action) {
+            state.push(action.payload);
+        },
+        removeMovie(state, action) {}
     }
 });
 
-export const favoritesReducer = FavoritesSlice.reducer;
+export const favoritesReducer = favoritesSlice.reducer;
+export const { addMovie } = favoritesSlice.actions;

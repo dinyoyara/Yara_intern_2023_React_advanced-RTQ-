@@ -1,12 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const WatchlistSlice = createSlice({
-    name: 'favorites',
-    initialState: {
-        isLoading: false,
-        error: null,
-        data: []
-    }
+const watchlistSlice = createSlice({
+    name: 'watchlist',
+    initialState: []
 });
 
-export const watchlistReducer = WatchlistSlice.reducer;
+export const watchlistReducer = watchlistSlice.reducer;

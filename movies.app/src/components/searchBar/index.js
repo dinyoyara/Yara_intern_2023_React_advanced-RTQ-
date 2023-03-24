@@ -12,6 +12,9 @@ const SearchBar = () => {
     };
 
     const handleSearch = () => {
+        if (!inputValue.match(/[A_Za-z0-9]+/)) {
+            return;
+        }
         dispatch(setQuery(inputValue));
     };
 

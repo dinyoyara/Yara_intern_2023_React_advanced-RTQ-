@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import SearchBar from '../searchBar';
 import ResultMovie from '../resultMovie';
 import MovieCollection from '../movieCollection';
-import { setActiveCollection } from '../../store';
+import { setActiveCollection, setQuery } from '../../store';
 
 const Body = () => {
     const searchQuery = useSelector((state) => {
@@ -22,17 +22,19 @@ const Body = () => {
 
     const navigateToFavorites = () => {
         navigate('/favorites');
-        dispatch(setActiveCollection('favorites'));
+        dispatch(setActiveCollection(process.env.REACT_APP_FAVORITES));
+        dispatch(setQuery(''));
     };
 
     const navigateToHome = () => {
         navigate('/');
         dispatch(setActiveCollection(''));
+        dispatch(setQuery(''));
     };
 
     const navigateToWatchlist = () => {
         navigate('/watchlist');
-        dispatch(setActiveCollection('watchlist'));
+        dispatch(setActiveCollection(process.env.REACT_APP_WATCHLIST));
     };
 
     return (

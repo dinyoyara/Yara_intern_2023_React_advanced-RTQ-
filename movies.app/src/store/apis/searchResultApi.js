@@ -1,7 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-//TODO Use .env value
-const apiKey = '36ec8f8d';
+const apiKey = process.env.REACT_APP_API_KEY;
 
 const searchResultApi = createApi({
     reducerPath: 'searchResults',
@@ -17,7 +16,7 @@ const searchResultApi = createApi({
                         method: 'GET',
                         params: {
                             t: searchQuery,
-                            apikey: `${apiKey}`
+                            apikey: apiKey
                         }
                     };
                 }

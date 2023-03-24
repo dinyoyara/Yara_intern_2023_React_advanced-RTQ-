@@ -12,10 +12,10 @@ const MovieCollection = ({ collection }) => {
 
     const handleRemove = (imdbID, activeCollection) => {
         switch (activeCollection) {
-            case 'favorites':
+            case process.env.REACT_APP_FAVORITES:
                 dispatch(removeFromFavorites(imdbID));
                 break;
-            case 'watchlist':
+            case process.env.REACT_APP_WATCHLIST:
                 dispatch(removeFromWatchlist(imdbID));
                 break;
             default:
@@ -26,7 +26,6 @@ const MovieCollection = ({ collection }) => {
     return (
         <div style={{ display: 'flex', flexWrap: 'wrap' }}>
             {collection.map((movie) => {
-                console.log(collection);
                 return (
                     <div key={movie.imdbID} style={{ marginBottom: '20px' }}>
                         <Movie title={movie.Title} year={movie.Year} poster={movie.Poster} width='250' />

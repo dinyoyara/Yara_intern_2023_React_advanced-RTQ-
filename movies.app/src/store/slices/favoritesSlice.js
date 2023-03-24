@@ -4,7 +4,7 @@ const favoritesSlice = createSlice({
     name: 'favorites',
     initialState: [],
     reducers: {
-        addMovie(state, action) {
+        addToFavorites(state, action) {
             state.push(action.payload);
         },
         removeMovie(state, action) {}
@@ -12,4 +12,4 @@ const favoritesSlice = createSlice({
 });
 
 export const favoritesReducer = favoritesSlice.reducer;
-export const { addMovie } = favoritesSlice.actions;
+export const { addToFavorites } = favoritesSlice.actions;

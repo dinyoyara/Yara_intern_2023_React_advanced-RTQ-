@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 
 import { searchResultApi } from './apis/searchResultApi';
-import { favoritesReducer } from './slices/favoritesSlice';
+import { favoritesReducer, addToFavorites } from './slices/favoritesSlice';
 import { watchlistReducer } from './slices/watchlistSlice';
 import { searchReducer, setQuery } from './slices/searchSlice';
 
@@ -20,5 +20,5 @@ export const store = configureStore({
 
 setupListeners(store.dispatch);
 
-export { setQuery };
+export { setQuery, addToFavorites };
 export const { useFetchMoviesQuery } = searchResultApi;

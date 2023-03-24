@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import Movie from '../movie';
-import { useFetchMoviesQuery, addToFavorites } from '../../store';
+import { useFetchMoviesQuery, addToFavorites, addToWatchlist } from '../../store';
 
 const ResultMovie = () => {
     const searchQuery = useSelector((state) => {
@@ -16,7 +16,7 @@ const ResultMovie = () => {
     };
 
     const handleAddToWatch = (imdbID, Title, Year, Poster) => {
-        console.log({ imdbID, Title, Year, Poster });
+        dispatch(addToWatchlist({ imdbID, Title, Year, Poster }));
     };
 
     let content;

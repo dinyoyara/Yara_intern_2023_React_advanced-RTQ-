@@ -3,9 +3,9 @@ import { setupListeners } from '@reduxjs/toolkit/query';
 
 import { searchResultApi } from './apis/searchResultApi';
 import { searchReducer, setQuery } from './slices/searchSlice';
-import { favoritesReducer, addToFavorites, removeFromFavorites } from './slices/favoritesSlice';
-import { watchlistReducer } from './slices/watchlistSlice';
 import { activeCollectionReducer, setActiveCollection } from './slices/activeCollecton';
+import { favoritesReducer, addToFavorites, removeFromFavorites } from './slices/favoritesSlice';
+import { watchlistReducer, addToWatchlist, removeFromWatchlist } from './slices/watchlistSlice';
 
 const store = configureStore({
     reducer: {
@@ -22,5 +22,13 @@ const store = configureStore({
 
 setupListeners(store.dispatch);
 
-export { store, setQuery, addToFavorites, removeFromFavorites, setActiveCollection };
+export {
+    store,
+    setQuery,
+    addToFavorites,
+    removeFromFavorites,
+    setActiveCollection,
+    addToWatchlist,
+    removeFromWatchlist
+};
 export const { useFetchMoviesQuery } = searchResultApi;

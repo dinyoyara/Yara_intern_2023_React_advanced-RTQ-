@@ -2,7 +2,7 @@ import React from 'react';
 import Movie from '../movie';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { removeFromFavorites } from '../../store';
+import { removeFromFavorites, removeFromWatchlist } from '../../store';
 
 const MovieCollection = ({ collection }) => {
     const dispatch = useDispatch();
@@ -14,6 +14,9 @@ const MovieCollection = ({ collection }) => {
         switch (activeCollection) {
             case 'favorites':
                 dispatch(removeFromFavorites(imdbID));
+                break;
+            case 'watchlist':
+                dispatch(removeFromWatchlist(imdbID));
                 break;
             default:
                 break;

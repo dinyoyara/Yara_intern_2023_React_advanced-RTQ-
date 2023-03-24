@@ -9,7 +9,6 @@ const favoritesSlice = createSlice({
         },
         removeFromFavorites(state, action) {
             const index = state.findIndex((x) => x.imdbID === action.payload);
-            console.log(index);
             state.splice(index, 1);
         }
     }

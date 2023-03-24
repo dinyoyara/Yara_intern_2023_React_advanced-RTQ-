@@ -8,14 +8,28 @@ const ResultMovie = () => {
     const searchQuery = useSelector((state) => {
         return state.searchQuery;
     });
+    const favorites = useSelector((state) => {
+        return state.favorites;
+    });
+    const watchlist = useSelector((state) => {
+        return state.watchlist;
+    });
     const { data, error, isFetching } = useFetchMoviesQuery(searchQuery);
     const dispatch = useDispatch();
 
     const handleAddToFav = (imdbID, Title, Year, Poster) => {
+        if (favorites.some((x) => x.imdbID === imdbID)) {
+            alert('already in the collection');
+            return;
+        }
         dispatch(addToFavorites({ imdbID, Title, Year, Poster }));
     };
 
     const handleAddToWatch = (imdbID, Title, Year, Poster) => {
+        if (watchlist.some((x) => x.imdbID === imdbID)) {
+            alert('already in the collection');
+            return;
+        }
         dispatch(addToWatchlist({ imdbID, Title, Year, Poster }));
     };
 
@@ -23,7 +37,7 @@ const ResultMovie = () => {
     if (isFetching) {
         content = <div>Loading ....</div>;
     } else if (error) {
-        content = <div>Error loading albums.</div>;
+        content = <div>Error loading movie!</div>;
     } else {
         const { Title, Year, imdbID, Poster } = data;
         content = (

@@ -7,9 +7,13 @@ const favoritesSlice = createSlice({
         addToFavorites(state, action) {
             state.push(action.payload);
         },
-        removeMovie(state, action) {}
+        removeFromFavorites(state, action) {
+            const index = state.findIndex((x) => x.imdbID === action.payload);
+            console.log(index);
+            state.splice(index, 1);
+        }
     }
 });
 
 export const favoritesReducer = favoritesSlice.reducer;
-export const { addToFavorites } = favoritesSlice.actions;
+export const { addToFavorites, removeFromFavorites } = favoritesSlice.actions;

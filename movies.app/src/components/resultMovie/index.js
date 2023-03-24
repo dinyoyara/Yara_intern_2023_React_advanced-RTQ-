@@ -1,8 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { useFetchMoviesQuery, addToFavorites } from '../../store';
 import Movie from '../movie';
+import { useFetchMoviesQuery, addToFavorites } from '../../store';
 
 const ResultMovie = () => {
     const searchQuery = useSelector((state) => {
@@ -12,7 +12,6 @@ const ResultMovie = () => {
     const dispatch = useDispatch();
 
     const handleAddToFav = (imdbID, Title, Year, Poster) => {
-        console.log({ imdbID, Title, Year, Poster });
         dispatch(addToFavorites({ imdbID, Title, Year, Poster }));
     };
 
@@ -26,7 +25,6 @@ const ResultMovie = () => {
     } else if (error) {
         content = <div>Error loading albums.</div>;
     } else {
-        console.log(data);
         const { Title, Year, imdbID, Poster } = data;
         content = (
             <>

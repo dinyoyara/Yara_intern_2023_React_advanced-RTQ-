@@ -1,10 +1,11 @@
 import React from 'react';
 import { Routes, Route, useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import SearchBar from '../searchBar';
 import ResultMovie from '../resultMovie';
 import MovieCollection from '../movieCollection';
+import { setActiveCollection } from '../../store';
 
 const Body = () => {
     const searchQuery = useSelector((state) => {
@@ -17,25 +18,41 @@ const Body = () => {
         return state.watchlist;
     });
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const navigateToFavorites = () => {
+        navigate('/favorites');
+        dispatch(setActiveCollection('favorites'));
+    };
+
+    const navigateToHome = () => {
+        navigate('/');
+        dispatch(setActiveCollection(''));
+    };
+
+    const navigateToWatchlist = () => {
+        navigate('/watchlist');
+        dispatch(setActiveCollection('watchlist'));
+    };
 
     return (
         <>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
                 <div style={{ display: 'flex', marginTop: '20px' }}>
                     <div
-                        onClick={() => navigate('/')}
+                        onClick={navigateToHome}
                         style={{ marginLeft: '20px', fontWeight: 'bolder', cursor: 'pointer' }}
                     >
                         Home
                     </div>
                     <div
-                        onClick={() => navigate('/favorites')}
+                        onClick={navigateToFavorites}
                         style={{ marginLeft: '20px', fontWeight: 'bolder', cursor: 'pointer' }}
                     >
                         Favorites
                     </div>
                     <div
-                        onClick={() => navigate('/watchlist')}
+                        onClick={navigateToWatchlist}
                         style={{ marginLeft: '20px', fontWeight: 'bolder', cursor: 'pointer' }}
                     >
                         Watchlist

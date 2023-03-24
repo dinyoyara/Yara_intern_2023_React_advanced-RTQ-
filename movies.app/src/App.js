@@ -1,20 +1,13 @@
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 
-import { useSelector } from 'react-redux';
-
-import SearchBar from './components/searchBar';
-import ResultFilms from './components/resultFilms';
+import Body from './components/body';
 
 const App = () => {
-    const searchQuery = useSelector((state) => {
-        return state.searchQuery;
-    });
-
     return (
-        <>
-            <SearchBar />
-            {searchQuery ? <ResultFilms searchQuery={searchQuery} /> : null}
-        </>
+        <BrowserRouter>
+            <Body />
+        </BrowserRouter>
     );
 };
 

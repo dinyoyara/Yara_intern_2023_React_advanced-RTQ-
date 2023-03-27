@@ -5,8 +5,8 @@ import Movie from '../movie';
 import { useFetchMoviesQuery, addToFavorites, addToWatchlist } from '../../store';
 
 const ResultMovie = () => {
-    const searchQuery = useSelector((state) => {
-        return state.searchQuery;
+    const searchTerm = useSelector((state) => {
+        return state.searchTerm;
     });
     const favorites = useSelector((state) => {
         return state.favorites;
@@ -14,7 +14,7 @@ const ResultMovie = () => {
     const watchlist = useSelector((state) => {
         return state.watchlist;
     });
-    const { data, error, isFetching } = useFetchMoviesQuery(searchQuery);
+    const { data, error, isFetching } = useFetchMoviesQuery(searchTerm);
     const dispatch = useDispatch();
 
     const handleAddToFav = (imdbID, Title, Year, Poster) => {

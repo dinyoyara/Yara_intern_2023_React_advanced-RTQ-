@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { setQuery } from '../../store';
+import { setSearchTerm } from '../../store';
 
 const SearchBar = () => {
     const [inputValue, setInputValue] = useState('');
@@ -15,11 +15,11 @@ const SearchBar = () => {
         if (!inputValue.match(/[A_Za-z0-9]+/)) {
             return;
         }
-        dispatch(setQuery(inputValue));
+        dispatch(setSearchTerm(inputValue));
     };
 
     const handleClear = () => {
-        dispatch(setQuery(''));
+        dispatch(setSearchTerm(''));
         setInputValue('');
     };
 

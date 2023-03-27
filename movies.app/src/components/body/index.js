@@ -5,11 +5,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import SearchBar from '../searchBar';
 import ResultMovie from '../resultMovie';
 import MovieCollection from '../movieCollection';
-import { setActiveCollection, setQuery } from '../../store';
+import { setActiveCollection, setSearchTerm } from '../../store';
 
 const Body = () => {
-    const searchQuery = useSelector((state) => {
-        return state.searchQuery;
+    const searchTerm = useSelector((state) => {
+        return state.searchTerm;
     });
     const favorites = useSelector((state) => {
         return state.favorites;
@@ -23,13 +23,13 @@ const Body = () => {
     const navigateToFavorites = () => {
         navigate('/favorites');
         dispatch(setActiveCollection(process.env.REACT_APP_FAVORITES));
-        dispatch(setQuery(''));
+        dispatch(setSearchTerm(''));
     };
 
     const navigateToHome = () => {
         navigate('/');
         dispatch(setActiveCollection(''));
-        dispatch(setQuery(''));
+        dispatch(setSearchTerm(''));
     };
 
     const navigateToWatchlist = () => {
@@ -68,7 +68,7 @@ const Body = () => {
                     element={
                         <>
                             <SearchBar />
-                            {searchQuery ? <ResultMovie /> : null}
+                            {searchTerm ? <ResultMovie /> : null}
                         </>
                     }
                 ></Route>

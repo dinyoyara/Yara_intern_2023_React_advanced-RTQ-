@@ -10,12 +10,12 @@ const searchResultApi = createApi({
     endpoints: (builder) => {
         return {
             fetchMovies: builder.query({
-                query: (searchQuery) => {
+                query: (searchTerm) => {
                     return {
                         url: '/',
                         method: 'GET',
                         params: {
-                            t: searchQuery,
+                            t: searchTerm,
                             apikey: apiKey
                         }
                     };

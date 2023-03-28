@@ -6,36 +6,27 @@ import { useFetchMoviesQuery, addToFavorites, addToWatchlist } from '../../store
 
 const ResultMovie = () => {
     const dispatch = useDispatch();
-    const search = useSelector((state) => {
-        return state.search;
-    });
-    const favorites = useSelector((state) => {
-        return state.favorites;
-    });
-    const watchlist = useSelector((state) => {
-        return state.watchlist;
-    });
+
+    const search = useSelector((state) => state.search);
+    const favorites = useSelector((state) => state.favorites);
+    const watchlist = useSelector((state) => state.watchlist);
+
     const { data, error, isFetching } = useFetchMoviesQuery(search.searchTerm);
 
     const handleAddToFav = (imdbID, Title, Year, Poster) => {
-        if (favorites.some((x) => x.imdbID === imdbID)) {
-            alert('already in the collection');
-            return;
-        }
+        if (favorites.some((x) => x.imdbID === imdbID)) return alert('already in the collection');
         dispatch(addToFavorites({ imdbID, Title, Year, Poster }));
     };
 
     const handleAddToWatch = (imdbID, Title, Year, Poster) => {
-        if (watchlist.some((x) => x.imdbID === imdbID)) {
-            alert('already in the collection');
-            return;
-        }
+        if (watchlist.some((x) => x.imdbID === imdbID)) return alert('already in the collection');
         dispatch(addToWatchlist({ imdbID, Title, Year, Poster }));
     };
 
     let content;
+
     if (isFetching) {
-        content = <div>Loading ....</div>;
+        content = <div>Loading ...</div>;
     } else if (error) {
         content = <div>Error loading movie!</div>;
     } else if (data.Error) {
